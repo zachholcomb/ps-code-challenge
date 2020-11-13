@@ -20,9 +20,9 @@ RSpec.describe PercentileCalculator do
     total_values = StreetCafe.get_ls2_cafes_chairs_list.length
     
     percentile_50 = PercentileCalculator.calculate_percentile(
-      50.0,
-      total_values,
-      StreetCafe.get_ls2_cafes_chairs_list
+      percentile: 50.0,
+      total_values: total_values,
+      list: StreetCafe.get_ls2_cafes_chairs_list
     )
     expect(percentile_50).to eq(20.0)
   end
