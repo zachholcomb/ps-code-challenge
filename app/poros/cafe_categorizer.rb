@@ -42,10 +42,10 @@ class CafeCategorizer
 
     def set_50_percentile
       chair_totals_list = StreetCafe.get_ls2_cafes_chairs_list
-      total_number_of_chairs = chair_totals_list.length
+      number_of_chair_values = chair_totals_list.length
       PercentileCalculator.calculate_percentile(
         50.0,
-        total_number_of_chairs,
+        number_of_chair_values,
         chair_totals_list
       )
     end
