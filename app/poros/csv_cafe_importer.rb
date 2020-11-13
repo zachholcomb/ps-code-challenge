@@ -1,7 +1,13 @@
 class CSVCafeImporter
   class << self
-    def import_file(file)
+    def import_cafes(file)
       reset_models
+      import_file(file)
+    end
+
+    private
+
+    def import_file(file)
       CSV.foreach(
         file, 
         headers: true,
@@ -15,8 +21,6 @@ class CSVCafeImporter
           )
       end
     end
-
-    private
 
     def reset_models
       StreetCafe.destroy_all
