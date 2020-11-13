@@ -24,7 +24,7 @@ RSpec.describe 'db:categorize:update_names', type: :rake do
     Rake::Task['db:cafes:update_med_lg_cafe_names'].invoke
     updated_med_cafes = StreetCafe.where("category LIKE '%medium'")
     expect(updated_med_cafes[0].name).to include('medium')
-
+    
     updated_large_cafes = StreetCafe.where("category LIKE '%large'")
     expect(updated_large_cafes[0].name).to include('large')
   end
