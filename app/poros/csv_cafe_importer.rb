@@ -1,20 +1,26 @@
 class CSVCafeImporter
   class << self
-    def import_file(file)
+    def import_cafes(file)
       reset_models
-      CSV.foreach(
-        file, 
-        headers: true,
-        encoding:'iso-8859-1',
-        header_converters: lambda { |header| header.downcase.tr(' ', '_') }) do |row|
-          data = row.to_h
-          data['name'] = data.delete('cafã©/restaurant_name')
-          data['notes'] = data.delete(data['nil'])
-          StreetCafe.create(data)
-      end
+      import_file(file)
     end
 
     private
+
+    def import_file(file)
+      CSV.foreach(
+        file, 
+        headers: true,
+        header_converters: :symbol) do  |row|
+          StreetCafe.create(
+            name: row[:cafrestaurant_name],
+            street_address: row[:street_addres],
+            post_code: row[:post_code],
+            number_of_chairs: row[:number_of_chairs],
+            notes: row[:nil]
+          )
+      end
+    end
 
     def reset_models
       StreetCafe.destroy_all

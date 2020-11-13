@@ -6,7 +6,7 @@ class PercentileCalculator
     else
       index_above = index.round
       index_below = index.floor
-      value = (list[index_above] + list[index_below]).to_f / 2
+      (list[index_above] + list[index_below]).to_f / 2
     end
   end
 end
